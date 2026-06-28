@@ -300,5 +300,5 @@ function init(){
   $("#gen-date").textContent=fmtDate(D.generated);
   render();
 }
-document.addEventListener("DOMContentLoaded",init);
+if(document.readyState!=="loading")init();else document.addEventListener("DOMContentLoaded",init);
 })();

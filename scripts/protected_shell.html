@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>لوحة قيادة المحلية | mahalliah</title>
+<link rel="icon" href="__LOGO__">
+<style>
+/*__CSS__*/
+/* ===== Login gate ===== */
+#gate{position:fixed;inset:0;z-index:1000;background:linear-gradient(135deg,#3a4d12,#2c3a0d);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;color:#e9eede;padding:24px}
+#gate img{width:110px;height:110px;border-radius:20px;background:#fff;padding:8px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+#gate h2{margin:6px 0 0;font-size:20px}
+#gate p{margin:0;font-size:13px;opacity:.85;text-align:center;max-width:340px}
+#gate .card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:16px;
+  padding:22px;display:flex;flex-direction:column;gap:12px;width:min(360px,90vw);backdrop-filter:blur(4px)}
+#gate input{padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.95);font-size:15px;font-family:inherit;color:#26310c;outline:none;direction:ltr;text-align:center;letter-spacing:1px}
+#gate button{padding:12px;border:none;border-radius:10px;background:#76b82a;color:#1b2408;font-weight:700;
+  font-size:15px;font-family:inherit;cursor:pointer;transition:.15s}
+#gate button:hover{background:#9acb3c}
+#gate button:disabled{opacity:.6;cursor:wait}
+#gate .err{color:#ffb4ab;font-size:13px;min-height:18px;text-align:center}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- ===== Password gate ===== -->
+<div id="gate">
+  <img src="__LOGO__" alt="شعار المحلية">
+  <h2>لوحة قيادة المحلية · mahalliah</h2>
+  <p>هذه اللوحة محمية. أدخل كلمة المرور لعرض البيانات.</p>
+  <form class="card" id="gate-form">
+    <input id="pw" type="password" placeholder="كلمة المرور" autocomplete="off" autofocus>
+    <button type="submit" id="pw-btn">دخول</button>
+    <div class="err" id="pw-err"></div>
+  </form>
+</div>
+
+<!-- ===== Dashboard (revealed after unlock) ===== -->
+<div id="app" class="hidden">
+<header class="appbar">
+  <img class="logo" src="__LOGO__" alt="شعار المحلية">
+  <div class="titles">
+    <h1>لوحة قيادة المتابعة والامتثال</h1>
+    <p>مجموعة شركات المحلية · mahalliah — التراخيص والإقامات والمركبات والأنظمة</p>
+  </div>
+  <div class="spacer"></div>
+  <div class="meta">تاريخ التحديث: <b id="gen-date">—</b><br>لوحة تفاعلية · تُحدّث الفلاتر النتائج فوراً</div>
+</header>
+<div class="wrap">
+  <div class="filters">
+    <div class="field"><label>الشركة / المنشأة</label><select id="f-company"><option value="">كل الشركات</option></select></div>
+    <div class="field"><label>الحالة</label><select id="f-status"><option value="">كل الحالات</option><option value="valid">ساري</option><option value="soon">قريب الانتهاء</option><option value="expired">منتهي</option></select></div>
+    <div class="field"><label>نافذة الاستحقاق</label><select id="f-window"><option value="">كل الفترات</option><option value="30">خلال 30 يوم</option><option value="60">خلال 60 يوم</option><option value="90">خلال 90 يوم</option><option value="180">خلال 180 يوم</option></select></div>
+    <div class="field" style="flex:2"><label>بحث (اسم / رقم / بيان)</label><input id="f-search" type="search" placeholder="اكتب للبحث في كل الجداول…"></div>
+    <button id="f-reset" class="btn-reset">إعادة تعيين</button>
+  </div>
+  <div class="kpis" id="kpis"></div>
+  <div class="grid-3">
+    <div class="panel"><h3>توزيع حالة الإقامات</h3><div class="donut-wrap"><div class="donut"><div class="ring" id="donut"></div><div class="center"><b id="donut-total">0</b><span>إقامة</span></div></div><div class="legend" id="donut-legend"></div></div></div>
+    <div class="panel"><h3>السجلات حسب الشركة</h3><div class="bars" id="company-bars"></div></div>
+    <div class="panel"><h3>حالة المركبات (الاستمارة / الفحص)</h3><div class="bars" id="vehicle-bars"></div>
+      <div style="margin-top:14px;font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap">
+        <span><span class="badge b-ok">ساري</span></span><span><span class="badge b-warn">قريب</span></span><span><span class="badge b-danger">منتهي</span></span><span><span class="badge b-neutral">غير محدد</span></span></div></div>
+  </div>
+  <div class="grid-2">
+    <div class="panel"><h3>انتهاء الإقامات خلال 12 شهراً القادمة</h3><div class="tl" id="timeline"></div></div>
+    <div class="panel"><h3>قائمة الأولويات — قريبة الانتهاء <span class="count-pill">(<span id="soon-count">0</span>)</span></h3><div id="soon-list" style="max-height:200px;overflow:auto"></div></div>
+  </div>
+  <div class="section-title"><span class="dot"></span> السجلات التفصيلية <span class="count-pill" id="table-count"></span></div>
+  <div class="tabs">
+    <button class="tab active" data-tab="licenses">التراخيص والسجلات</button>
+    <button class="tab" data-tab="iqamas">إقامات الموظفين</button>
+    <button class="tab" data-tab="vehicles">المركبات</button>
+    <button class="tab" data-tab="platforms">المنصات والأنظمة</button>
+  </div>
+  <div class="table-wrap" id="table-wrap"></div>
+  <div class="footer">لوحة قيادة <b>المحلية · mahalliah</b> — بيانات مشفّرة، تُفك فقط بكلمة المرور · التواريخ الهجرية محوّلة آلياً</div>
+</div>
+</div>
+
+<script>
+const ENC = /*__PAYLOAD__*/;
+const b642buf = b64 => Uint8Array.from(atob(b64), c=>c.charCodeAt(0));
+async function unlock(password){
+  const enc = new TextEncoder();
+  const baseKey = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey(
+    {name:"PBKDF2", salt:b642buf(ENC.salt), iterations:ENC.iter, hash:"SHA-256"},
+    baseKey, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  const plain = await crypto.subtle.decrypt({name:"AES-GCM", iv:b642buf(ENC.iv)}, key, b642buf(ENC.ct));
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+document.getElementById("gate-form").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const btn=document.getElementById("pw-btn"), err=document.getElementById("pw-err");
+  const pw=document.getElementById("pw").value;
+  err.textContent=""; btn.disabled=true; btn.textContent="جارٍ فك التشفير…";
+  try{
+    window.DASH_DATA = await unlock(pw);
+    document.getElementById("gate").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+    startDashboard();
+  }catch(ex){
+    err.textContent="كلمة المرور غير صحيحة";
+    btn.disabled=false; btn.textContent="دخول";
+  }
+});
+</script>
+<script>
+function startDashboard(){
+/*__APP__*/
+}
+</script>
+</body>
+</html>
