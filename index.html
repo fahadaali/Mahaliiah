@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة قيادة المحلية | mahalliah Dashboard</title>
+<link rel="icon" href="assets/logo.jpeg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="appbar">
+  <img class="logo" src="assets/logo.jpeg" alt="شعار المحلية">
+  <div class="titles">
+    <h1>لوحة قيادة المتابعة والامتثال</h1>
+    <p>مجموعة شركات المحلية · mahalliah — التراخيص والإقامات والمركبات والأنظمة</p>
+  </div>
+  <div class="spacer"></div>
+  <div class="meta">
+    تاريخ التحديث: <b id="gen-date">—</b><br>
+    لوحة تفاعلية · تُحدّث الفلاتر النتائج فوراً
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ===== Filters ===== -->
+  <div class="filters">
+    <div class="field">
+      <label>الشركة / المنشأة</label>
+      <select id="f-company"><option value="">كل الشركات</option></select>
+    </div>
+    <div class="field">
+      <label>الحالة</label>
+      <select id="f-status">
+        <option value="">كل الحالات</option>
+        <option value="valid">ساري</option>
+        <option value="soon">قريب الانتهاء</option>
+        <option value="expired">منتهي</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>نافذة الاستحقاق</label>
+      <select id="f-window">
+        <option value="">كل الفترات</option>
+        <option value="30">خلال 30 يوم</option>
+        <option value="60">خلال 60 يوم</option>
+        <option value="90">خلال 90 يوم</option>
+        <option value="180">خلال 180 يوم</option>
+      </select>
+    </div>
+    <div class="field" style="flex:2">
+      <label>بحث (اسم / رقم / بيان)</label>
+      <input id="f-search" type="search" placeholder="اكتب للبحث في كل الجداول…">
+    </div>
+    <button id="f-reset" class="btn-reset">إعادة تعيين</button>
+  </div>
+
+  <!-- ===== KPIs ===== -->
+  <div class="kpis" id="kpis"></div>
+
+  <!-- ===== Charts row 1 ===== -->
+  <div class="grid-3">
+    <div class="panel">
+      <h3>توزيع حالة الإقامات</h3>
+      <div class="donut-wrap">
+        <div class="donut"><div class="ring" id="donut"></div><div class="center"><b id="donut-total">0</b><span>إقامة</span></div></div>
+        <div class="legend" id="donut-legend"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>السجلات حسب الشركة</h3>
+      <div class="bars" id="company-bars"></div>
+    </div>
+    <div class="panel">
+      <h3>حالة المركبات (الاستمارة / الفحص)</h3>
+      <div class="bars" id="vehicle-bars"></div>
+      <div style="margin-top:14px;font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap">
+        <span><span class="badge b-ok">ساري</span></span>
+        <span><span class="badge b-warn">قريب</span></span>
+        <span><span class="badge b-danger">منتهي</span></span>
+        <span><span class="badge b-neutral">غير محدد</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Charts row 2 ===== -->
+  <div class="grid-2">
+    <div class="panel">
+      <h3>انتهاء الإقامات خلال 12 شهراً القادمة</h3>
+      <div class="tl" id="timeline"></div>
+    </div>
+    <div class="panel">
+      <h3>قائمة الأولويات — قريبة الانتهاء <span class="count-pill">(<span id="soon-count">0</span>)</span></h3>
+      <div id="soon-list" style="max-height:200px;overflow:auto"></div>
+    </div>
+  </div>
+
+  <!-- ===== Detailed tables ===== -->
+  <div class="section-title"><span class="dot"></span> السجلات التفصيلية <span class="count-pill" id="table-count"></span></div>
+  <div class="tabs">
+    <button class="tab active" data-tab="licenses">التراخيص والسجلات</button>
+    <button class="tab" data-tab="iqamas">إقامات الموظفين</button>
+    <button class="tab" data-tab="vehicles">المركبات</button>
+    <button class="tab" data-tab="platforms">المنصات والأنظمة</button>
+  </div>
+  <div class="table-wrap" id="table-wrap"></div>
+
+  <div class="footer">
+    لوحة قيادة <b>المحلية · mahalliah</b> — مبنية من بيانات المتابعة المرفقة · جميع التواريخ الهجرية محوّلة آلياً إلى الميلادي
+  </div>
+
+</div>
+
+<script src="data/data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
