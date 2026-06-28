@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة قيادة المحلية | mahalliah Dashboard</title>
+<link rel="icon" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAFAAUADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD7LooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiig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OaRe7upns43P5kVtUUmk9wPMtY+Avwp1MMX8JwWrn+K0mkhx+Ctj9K43Wf2VPAtzk6brGuaex6AyJMo/Arn9a9/orKWHpS3ihcqPlDUf2TtZtZDLoHje3LDlfPtXhb/vpGP8qzpvhD+0LoimPTPED38K9Ei1clT/AMBmwK+wKKyeDp9Lr5i5EfEt94Z+PluxW/8ABsOo46mTSrK5z+IUk1my6T8VkOJvhHZOfX/hF0/9lFfdlFS8Ev5mLkR8JxaT8VnOIfhHZIfX/hF0/wDZhWlY+Gfj5cMFsPBsOnZ6GPSrK2x+JUEV9tUULBL+ZhyI+P4fhD+0LraiPU/EDWELdUl1chR/wGHIrR079k7WbqQS6/43twx5byLV5j/307D+VfV9FUsHT63fzHyI8A0b9lTwLbYOpaxrmoMOoEiQqfwC5/Wuy0f4C/CnTQpTwnBdOP4ruaSbP4M2P0r02itY4elHaKHyoxdI8JeFtICjS/DmkWW3oYLOND+YGa2gABgDAoorVJLYYUUUUwCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/2Q==">
+<style>
+/* ===== المحلية | mahalliah — Dashboard Styles ===== */
+/* الهوية البصرية: أخضر زيتوني داكن + كريمي فاتح + أخضر ليموني */
+:root{
+  --brand-dark:#3a4d12;       /* الأخضر الزيتوني الداكن (خلفية الشعار) */
+  --brand-dark-2:#2c3a0d;     /* أغمق للتدرجات */
+  --brand-green:#76b82a;      /* الأخضر الليموني (الأوراق) */
+  --brand-green-2:#9acb3c;    /* أفتح */
+  --brand-cream:#e9eede;      /* الكريمي الفاتح (النص داخل الشعار) */
+  --ink:#26310c;              /* لون النص الأساسي */
+  --muted:#6f7a59;            /* نص ثانوي */
+  --bg:#f4f6ee;               /* خلفية الصفحة */
+  --card:#ffffff;             /* خلفية البطاقات */
+  --line:#e2e7d5;             /* الحدود */
+  /* ألوان الحالة المرتبطة بالهوية */
+  --ok:#2e8b3d;       --ok-bg:#e7f4e8;
+  --warn:#d98a00;     --warn-bg:#fdf2dc;
+  --danger:#c0392b;   --danger-bg:#fbe9e7;
+  --neutral:#7a8568;  --neutral-bg:#eef1e6;
+  --shadow:0 6px 22px rgba(44,58,13,.08);
+  --radius:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Segoe UI",Tahoma,"Noto Naskh Arabic",Arial,sans-serif;
+  background:var(--bg);color:var(--ink);direction:rtl;
+  font-size:15px;line-height:1.55;
+}
+a{color:inherit}
+
+/* ===== Header ===== */
+.appbar{
+  background:linear-gradient(135deg,var(--brand-dark) 0%,var(--brand-dark-2) 100%);
+  color:var(--brand-cream);padding:18px 26px;display:flex;align-items:center;gap:18px;
+  box-shadow:var(--shadow);position:sticky;top:0;z-index:50;
+}
+.appbar .logo{
+  width:64px;height:64px;border-radius:14px;object-fit:cover;
+  background:#fff;padding:4px;box-shadow:0 2px 10px rgba(0,0,0,.25);flex:0 0 auto;
+}
+.appbar .titles h1{margin:0;font-size:21px;font-weight:700;letter-spacing:.2px}
+.appbar .titles p{margin:2px 0 0;font-size:13px;opacity:.85}
+.appbar .spacer{flex:1}
+.appbar .meta{text-align:left;font-size:12px;opacity:.85;line-height:1.7}
+.appbar .meta b{color:var(--brand-green-2)}
+
+/* ===== Layout ===== */
+.wrap{max-width:1320px;margin:0 auto;padding:22px}
+.section-title{display:flex;align-items:center;gap:10px;margin:30px 4px 14px;font-size:18px;font-weight:700;color:var(--brand-dark)}
+.section-title .dot{width:10px;height:18px;border-radius:4px;background:var(--brand-green)}
+
+/* ===== Filters ===== */
+.filters{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;box-shadow:var(--shadow);display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;
+}
+.field{display:flex;flex-direction:column;gap:6px;min-width:170px;flex:1}
+.field label{font-size:12px;font-weight:600;color:var(--muted)}
+.field select,.field input{
+  padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fbfcf8;
+  font-family:inherit;font-size:14px;color:var(--ink);outline:none;transition:.15s;
+}
+.field select:focus,.field input:focus{border-color:var(--brand-green);box-shadow:0 0 0 3px rgba(118,184,42,.18)}
+.btn-reset{
+  padding:9px 16px;border:none;border-radius:10px;background:var(--brand-dark);color:var(--brand-cream);
+  font-family:inherit;font-weight:600;cursor:pointer;transition:.15s;height:40px;
+}
+.btn-reset:hover{background:var(--brand-dark-2)}
+
+/* ===== KPI cards ===== */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:16px}
+.kpi{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.kpi::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:var(--brand-green)}
+.kpi.warn::before{background:var(--warn)}
+.kpi.danger::before{background:var(--danger)}
+.kpi.dark::before{background:var(--brand-dark)}
+.kpi .label{font-size:13px;color:var(--muted);font-weight:600}
+.kpi .value{font-size:30px;font-weight:800;color:var(--brand-dark);margin-top:4px;line-height:1}
+.kpi .sub{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* ===== Chart grid ===== */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.panel{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);
+}
+.panel h3{margin:0 0 14px;font-size:15px;font-weight:700;color:var(--brand-dark)}
+
+/* donut */
+.donut-wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center}
+.donut{position:relative;width:160px;height:160px;flex:0 0 auto}
+.donut .ring{position:absolute;inset:0;border-radius:50%;
+  -webkit-mask:radial-gradient(circle 47px at center,transparent 98%,#000 100%);
+  mask:radial-gradient(circle 47px at center,transparent 98%,#000 100%);}
+.donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.donut .center b{font-size:26px;color:var(--brand-dark)}
+.donut .center span{font-size:11px;color:var(--muted)}
+.legend{display:flex;flex-direction:column;gap:8px}
+.legend .li{display:flex;align-items:center;gap:8px;font-size:13px}
+.legend .sw{width:12px;height:12px;border-radius:3px;flex:0 0 auto}
+
+/* bar chart */
+.bars{display:flex;flex-direction:column;gap:11px}
+.bar-row{display:grid;grid-template-columns:130px 1fr 42px;align-items:center;gap:10px;font-size:13px}
+.bar-row .name{color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{background:var(--neutral-bg);border-radius:8px;height:22px;overflow:hidden}
+.bar-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,var(--brand-green),var(--brand-green-2));min-width:2px;transition:width .5s}
+.bar-row .num{font-weight:700;color:var(--brand-dark);text-align:left}
+
+/* timeline / month bars */
+.tl{display:flex;align-items:flex-end;gap:6px;height:160px;padding-top:10px}
+.tl .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.tl .col .stack{width:100%;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.tl .col .seg{width:100%;border-radius:4px 4px 0 0;min-height:0}
+.tl .col .lbl{font-size:10px;color:var(--muted);white-space:nowrap}
+.tl .col .tot{font-size:11px;font-weight:700;color:var(--brand-dark)}
+
+/* ===== Tabs + tables ===== */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:24px}
+.tab{
+  padding:10px 18px;border:1px solid var(--line);background:var(--card);border-radius:10px 10px 0 0;
+  cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;color:var(--muted);transition:.15s;
+}
+.tab.active{background:var(--brand-dark);color:var(--brand-cream);border-color:var(--brand-dark)}
+.table-wrap{
+  background:var(--card);border:1px solid var(--line);border-radius:0 var(--radius) var(--radius) var(--radius);
+  box-shadow:var(--shadow);overflow:auto;max-height:560px;
+}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+thead th{
+  position:sticky;top:0;background:var(--brand-dark);color:var(--brand-cream);
+  padding:11px 12px;text-align:right;font-weight:600;white-space:nowrap;cursor:pointer;z-index:2;
+}
+thead th:hover{background:var(--brand-dark-2)}
+thead th .arr{opacity:.5;font-size:11px}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right;vertical-align:middle}
+tbody tr:nth-child(even){background:#fbfcf8}
+tbody tr:hover{background:var(--neutral-bg)}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+
+/* badges */
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.b-ok{background:var(--ok-bg);color:var(--ok)}
+.b-warn{background:var(--warn-bg);color:var(--warn)}
+.b-danger{background:var(--danger-bg);color:var(--danger)}
+.b-neutral{background:var(--neutral-bg);color:var(--neutral)}
+.count-pill{font-size:12px;font-weight:600;color:var(--muted);margin-right:8px}
+
+.footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 16px}
+.footer b{color:var(--brand-dark)}
+
+@media(max-width:900px){
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .appbar .meta{display:none}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="appbar">
+  <img class="logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAFAAUADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD7LooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiig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OaRe7upns43P5kVtUUmk9wPMtY+Avwp1MMX8JwWrn+K0mkhx+Ctj9K43Wf2VPAtzk6brGuaex6AyJMo/Arn9a9/orKWHpS3ihcqPlDUf2TtZtZDLoHje3LDlfPtXhb/vpGP8qzpvhD+0LoimPTPED38K9Ei1clT/AMBmwK+wKKyeDp9Lr5i5EfEt94Z+PluxW/8ABsOo46mTSrK5z+IUk1my6T8VkOJvhHZOfX/hF0/9lFfdlFS8Ev5mLkR8JxaT8VnOIfhHZIfX/hF0/wDZhWlY+Gfj5cMFsPBsOnZ6GPSrK2x+JUEV9tUULBL+ZhyI+P4fhD+0LraiPU/EDWELdUl1chR/wGHIrR079k7WbqQS6/43twx5byLV5j/307D+VfV9FUsHT63fzHyI8A0b9lTwLbYOpaxrmoMOoEiQqfwC5/Wuy0f4C/CnTQpTwnBdOP4ruaSbP4M2P0r02itY4elHaKHyoxdI8JeFtICjS/DmkWW3oYLOND+YGa2gABgDAoorVJLYYUUUUwCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/2Q==" alt="شعار المحلية">
+  <div class="titles">
+    <h1>لوحة قيادة المتابعة والامتثال</h1>
+    <p>مجموعة شركات المحلية · mahalliah — التراخيص والإقامات والمركبات والأنظمة</p>
+  </div>
+  <div class="spacer"></div>
+  <div class="meta">
+    تاريخ التحديث: <b id="gen-date">—</b><br>
+    لوحة تفاعلية · تُحدّث الفلاتر النتائج فوراً
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ===== Filters ===== -->
+  <div class="filters">
+    <div class="field">
+      <label>الشركة / المنشأة</label>
+      <select id="f-company"><option value="">كل الشركات</option></select>
+    </div>
+    <div class="field">
+      <label>الحالة</label>
+      <select id="f-status">
+        <option value="">كل الحالات</option>
+        <option value="valid">ساري</option>
+        <option value="soon">قريب الانتهاء</option>
+        <option value="expired">منتهي</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>نافذة الاستحقاق</label>
+      <select id="f-window">
+        <option value="">كل الفترات</option>
+        <option value="30">خلال 30 يوم</option>
+        <option value="60">خلال 60 يوم</option>
+        <option value="90">خلال 90 يوم</option>
+        <option value="180">خلال 180 يوم</option>
+      </select>
+    </div>
+    <div class="field" style="flex:2">
+      <label>بحث (اسم / رقم / بيان)</label>
+      <input id="f-search" type="search" placeholder="اكتب للبحث في كل الجداول…">
+    </div>
+    <button id="f-reset" class="btn-reset">إعادة تعيين</button>
+  </div>
+
+  <!-- ===== KPIs ===== -->
+  <div class="kpis" id="kpis"></div>
+
+  <!-- ===== Charts row 1 ===== -->
+  <div class="grid-3">
+    <div class="panel">
+      <h3>توزيع حالة الإقامات</h3>
+      <div class="donut-wrap">
+        <div class="donut"><div class="ring" id="donut"></div><div class="center"><b id="donut-total">0</b><span>إقامة</span></div></div>
+        <div class="legend" id="donut-legend"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>السجلات حسب الشركة</h3>
+      <div class="bars" id="company-bars"></div>
+    </div>
+    <div class="panel">
+      <h3>حالة المركبات (الاستمارة / الفحص)</h3>
+      <div class="bars" id="vehicle-bars"></div>
+      <div style="margin-top:14px;font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap">
+        <span><span class="badge b-ok">ساري</span></span>
+        <span><span class="badge b-warn">قريب</span></span>
+        <span><span class="badge b-danger">منتهي</span></span>
+        <span><span class="badge b-neutral">غير محدد</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Charts row 2 ===== -->
+  <div class="grid-2">
+    <div class="panel">
+      <h3>انتهاء الإقامات خلال 12 شهراً القادمة</h3>
+      <div class="tl" id="timeline"></div>
+    </div>
+    <div class="panel">
+      <h3>قائمة الأولويات — قريبة الانتهاء <span class="count-pill">(<span id="soon-count">0</span>)</span></h3>
+      <div id="soon-list" style="max-height:200px;overflow:auto"></div>
+    </div>
+  </div>
+
+  <!-- ===== Detailed tables ===== -->
+  <div class="section-title"><span class="dot"></span> السجلات التفصيلية <span class="count-pill" id="table-count"></span></div>
+  <div class="tabs">
+    <button class="tab active" data-tab="licenses">التراخيص والسجلات</button>
+    <button class="tab" data-tab="iqamas">إقامات الموظفين</button>
+    <button class="tab" data-tab="vehicles">المركبات</button>
+    <button class="tab" data-tab="platforms">المنصات والأنظمة</button>
+  </div>
+  <div class="table-wrap" id="table-wrap"></div>
+
+  <div class="footer">
+    لوحة قيادة <b>المحلية · mahalliah</b> — مبنية من بيانات المتابعة المرفقة · جميع التواريخ الهجرية محوّلة آلياً إلى الميلادي
+  </div>
+
+</div>
+
+<script>
+window.DASH_DATA = {"generated": "2026-06-28", "licenses": [{"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "ترخيص بلدي المستودع في حي طيبة", "hijri": "15/10/1449", "expiry": "2028-12-03", "expiry_text": "", "platform": "بلدي", "notes": "", "status": "valid", "days": 889, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "ترخيص الدفاع المدني لمستودع حي طيبة", "hijri": "15/10/1449", "expiry": "2028-12-03", "expiry_text": "", "platform": "سلامة", "notes": "", "status": "valid", "days": 889, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "ترخيص بلدي لمكتب رقم 17109", "hijri": "13/02/1448", "expiry": "2026-07-29", "expiry_text": "", "platform": "بلدي", "notes": "", "status": "soon", "days": 31, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "ترخيص بلدي لمكتب 17103", "hijri": "11/10/1447", "expiry": "2026-03-30", "expiry_text": "", "platform": "بلدي", "notes": "", "status": "expired", "days": -90, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "شهادة السجل التجادي ( التأكيد السنوي )", "hijri": "07/03/1448", "expiry": "2026-08-20", "expiry_text": "", "platform": "المركز السعدوي للأعمال", "notes": "", "status": "soon", "days": 53, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "sts", "hijri": "", "expiry": null, "expiry_text": "25/ من كل شهر", "platform": "", "notes": "", "status": "recurring", "days": null, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "مقيم", "hijri": "", "expiry": "2027-03-19", "expiry_text": "", "platform": "", "notes": "", "status": "valid", "days": 264, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "منصة تم", "hijri": "", "expiry": null, "expiry_text": "", "platform": "", "notes": "", "status": "unknown", "days": null, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "التأمين الطبي", "hijri": "", "expiry": "2026-10-29", "expiry_text": "", "platform": "", "notes": "", "status": "valid", "days": 123, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "النقل الثقيل للبضائع", "hijri": "", "expiry": "2029-09-17", "expiry_text": "", "platform": "", "notes": "", "status": "valid", "days": 1177, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "منصة تم", "hijri": "", "expiry": "2027-02-27", "expiry_text": "", "platform": "", "notes": "", "status": "valid", "days": 244, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية للتجارة والزراعة المحدودة  رقم المنشأة في وزارة الموراد البشرية : ( 1-164199 )", "item": "منصة قوى", "hijri": "", "expiry": "2026-12-31", "expiry_text": "", "platform": "قوى", "notes": "", "status": "valid", "days": 186, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"company": "الشركة المحلية الدولية التجارية  رقم المنشأة في وزارة الموراد البشرية : ( 1-1516125)", "item": "ترخيص بلدي مكتب رقم 17101", "hijri": "04/08/1451", "expiry": "2029-11-12", "expiry_text": "", "platform": "", "notes": "", "status": "valid", "days": 1233, "company_norm": "الشركة المحلية الدولية التجارية"}, {"company": "الشركة المحلية الدولية التجارية  رقم المنشأة في وزارة الموراد البشرية : ( 1-1516125)", "item": "شهادة السجل التجاري ( التأكيد السنوي )", "hijri": "08/06/1448", "expiry": "2026-11-18", "expiry_text": "", "platform": "المركز السعودي للأعمال", "notes": "", "status": "valid", "days": 143, "company_norm": "الشركة المحلية الدولية التجارية"}, {"company": "الشركة المحلية الدولية التجارية  رقم المنشأة في وزارة الموراد البشرية : ( 1-1516125)", "item": "قوى", "hijri": "", "expiry": "2027-04-07", "expiry_text": "", "platform": "قوى", "notes": "", "status": "valid", "days": 283, "company_norm": "الشركة المحلية الدولية التجارية"}, {"company": "الشركة المحلية الدولية التجارية  رقم المنشأة في وزارة الموراد البشرية : ( 1-1516125)", "item": "sts", "hijri": "", "expiry": null, "expiry_text": "25/ من كل شهر", "platform": "STS", "notes": "", "status": "recurring", "days": null, "company_norm": "الشركة المحلية الدولية التجارية"}, {"company": "الشركة المحلية الدولية التجارية  رقم المنشأة في وزارة الموراد البشرية : ( 1-1516125)", "item": "مقيم", "hijri": "", "expiry": "2026-09-07", "expiry_text": "", "platform": "مقيم", "notes": "", "status": "soon", "days": 71, "company_norm": "الشركة المحلية الدولية التجارية"}, {"company": "مصنع نبات الارض  رقم المنشأة في وزارة الموراد البشرية : ( 1-2187821 )", "item": "اشهادة لسجل التجاري  ( التأكيد السنوي )", "hijri": "13/11/1448", "expiry": "2027-04-20", "expiry_text": "", "platform": "المركز السعودي للأعمال", "notes": "", "status": "valid", "days": 296, "company_norm": "مصنع نبات الأرض"}, {"company": "مصنع نبات الارض  رقم المنشأة في وزارة الموراد البشرية : ( 1-2187821 )", "item": "رخصة تشغيل المصنع", "hijri": "17/10/1448", "expiry": "2027-03-26", "expiry_text": "", "platform": "", "notes": "", "status": "valid", "days": 271, "company_norm": "مصنع نبات الأرض"}, {"company": "مصنع نبات الارض  رقم المنشأة في وزارة الموراد البشرية : ( 1-2187821 )", "item": "ترخيص منشأة", "hijri": "08/11/1449", "expiry": "2028-03-04", "expiry_text": "", "platform": "", "notes": "", "status": "valid", "days": 615, "company_norm": "مصنع نبات الأرض"}, {"company": "مصنع نبات الارض  رقم المنشأة في وزارة الموراد البشرية : ( 1-2187821 )", "item": "التأمين على المصنع شركة ميدغلف للتأمين التعاوني", "hijri": "26/04/1448", "expiry": "2026-09-10", "expiry_text": "", "platform": "شركة ميد غلف", "notes": "", "status": "soon", "days": 74, "company_norm": "مصنع نبات الأرض"}, {"company": "مصنع نبات الارض  رقم المنشأة في وزارة الموراد البشرية : ( 1-2187821 )", "item": "عقد نفايات المصنع", "hijri": "09/01/1449", "expiry": "2027-06-14", "expiry_text": "", "platform": "", "notes": "", "status": "valid", "days": 351, "company_norm": "مصنع نبات الأرض"}, {"company": "مصنع نبات الارض  رقم المنشأة في وزارة الموراد البشرية : ( 1-2187821 )", "item": "قوى", "hijri": "", "expiry": "2026-12-31", "expiry_text": "", "platform": "", "notes": "", "status": "valid", "days": 186, "company_norm": "مصنع نبات الأرض"}, {"company": "مصنع نبات الارض  رقم المنشأة في وزارة الموراد البشرية : ( 1-2187821 )", "item": "التصريح البيئي", "hijri": "05/02/1449", "expiry": "2027-10-07", "expiry_text": "", "platform": "", "notes": "", "status": "valid", "days": 466, "company_norm": "مصنع نبات الأرض"}], "iqamas": [{"name": "AHMED GANI MOHAMMED HAZI", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2459407488", "expiry": "2026-09-28", "status": "valid", "days": 92, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "RIDUY RUPAN  MIAH", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2522883194", "expiry": "2026-08-02", "status": "soon", "days": 35, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "ZAGIRHOSSAIN   ABDULMALEK", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2144633787", "expiry": "2026-10-14", "status": "valid", "days": 108, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "كمال محمد عبد ربه اغريب", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2565259484", "expiry": "2026-07-05", "status": "soon", "days": 7, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "انس نصر علي فرح", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2342412182", "expiry": "2026-08-20", "status": "soon", "days": 53, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "محمد أشرف فوزى سمك", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2335331688", "expiry": "2026-08-05", "status": "soon", "days": 38, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "عبدالرحمن خلف معوض معوض", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2604662862", "expiry": "2026-07-06", "status": "soon", "days": 8, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "KADENGAL - - ABDURAHIMAN", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2088725458", "expiry": "2026-11-09", "status": "valid", "days": 134, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "محمد فرحان محمد علي", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2611944162", "expiry": "2026-10-05", "status": "valid", "days": 99, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "علي كامل محمد سليمان", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2161722299", "expiry": "2026-09-16", "status": "soon", "days": 80, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "محمد محمود فقير محمد", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2177796964", "expiry": "2026-10-06", "status": "valid", "days": 100, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "فيصل عصام موسى بشيتي", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2217466248", "expiry": "2026-08-08", "status": "soon", "days": 41, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "شعبان محمد شعبان مكي", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2208886842", "expiry": "2027-05-15", "status": "valid", "days": 321, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "MOHAMMED SEAM  MOHAMMED", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2193827231", "expiry": "2026-08-15", "status": "soon", "days": 48, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "احمد منشاوى عباس العطوى", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2593975085", "expiry": "2027-02-20", "status": "valid", "days": 237, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "BHEEM SHANKAR   DHARMRAJ", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2611943529", "expiry": "2026-07-13", "status": "soon", "days": 15, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "نائل عايش عبدالرحمن خليل", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2136199037", "expiry": "2026-07-14", "status": "soon", "days": 16, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "JAN   SARIF", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2438155562", "expiry": "2028-06-17", "status": "valid", "days": 720, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "اشرف طاهر نعيم هاشم", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2530613906", "expiry": "2027-03-06", "status": "valid", "days": 251, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "محمد عبد العليم على فوده", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2242844682", "expiry": "2027-08-01", "status": "valid", "days": 399, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "ARJUN KUMAR  VISHVAKARMA", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2408618375", "expiry": "2026-11-29", "status": "valid", "days": 154, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "عبدالمبدى عبدالموجود عبدالمبدى محمد", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2505013256", "expiry": "2026-12-22", "status": "valid", "days": 177, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "MOHAMED ABDUL  HALEEM", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2301029795", "expiry": "2026-11-02", "status": "valid", "days": 127, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "اوميد عوض محمد عبدالرافع", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2290437744", "expiry": "2026-08-04", "status": "soon", "days": 37, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "عثمان محمد عثمان محمد", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2411677491", "expiry": "2027-05-30", "status": "valid", "days": 336, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "SALIMHOSSAIN   SHAHIDULLAH", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2096368705", "expiry": "2027-02-14", "status": "valid", "days": 231, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "ساليم مياه عبد الجليل", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2196053330", "expiry": "2026-10-16", "status": "valid", "days": 110, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "MOHAMMAD   RAFIK", "company": "مصنع نبات الأرض", "number": "2555586672", "expiry": "2026-11-01", "status": "valid", "days": 126, "company_norm": "مصنع نبات الأرض"}, {"name": "SHAMIM HOSSEN  MEHADI", "company": "مصنع نبات الأرض", "number": "2524155773", "expiry": "2026-11-18", "status": "valid", "days": 143, "company_norm": "مصنع نبات الأرض"}, {"name": "RAHAT   RAYHAN", "company": "مصنع نبات الأرض", "number": "2468333972", "expiry": "2026-08-12", "status": "soon", "days": 45, "company_norm": "مصنع نبات الأرض"}, {"name": "ABDUL KHALIQ  MOHAMMED", "company": "مصنع نبات الأرض", "number": "2579206513", "expiry": "2027-03-22", "status": "valid", "days": 267, "company_norm": "مصنع نبات الأرض"}, {"name": "MD RAKIB  HOSSAIN", "company": "مصنع نبات الأرض", "number": "2536447770", "expiry": "2027-01-03", "status": "valid", "days": 189, "company_norm": "مصنع نبات الأرض"}, {"name": "NAZEER ALI BIN  KHADER", "company": "مصنع نبات الأرض", "number": "2578800100", "expiry": "2026-09-10", "status": "soon", "days": 74, "company_norm": "مصنع نبات الأرض"}, {"name": "ALAMSHER SIKANDER  ALI", "company": "مصنع نبات الأرض", "number": "2578011344", "expiry": "2026-08-23", "status": "soon", "days": 56, "company_norm": "مصنع نبات الأرض"}, {"name": "NUR   ISLAM", "company": "مصنع نبات الأرض", "number": "2432095814", "expiry": "2027-04-08", "status": "valid", "days": 284, "company_norm": "مصنع نبات الأرض"}, {"name": "ABDUL KABIR KHAN MUHAMMAD AZEEM KHAN", "company": "مصنع نبات الأرض", "number": "2547493748", "expiry": "2026-08-03", "status": "soon", "days": 36, "company_norm": "مصنع نبات الأرض"}, {"name": "ABUBAKER SIDDIQ SAYYAD", "company": "الشركة المحلية للتجاره والزراعه المحدوده", "number": "2570772372", "expiry": "2025-05-20", "status": "expired", "days": -404, "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"name": "ISMAIL SANU  MIAH", "company": "مصنع نبات الأرض", "number": "2496886009", "expiry": "2027-05-21", "status": "valid", "days": 327, "company_norm": "مصنع نبات الأرض"}, {"name": "MOHAMMAD YASIN AHAMAD  EMON", "company": "مصنع نبات الأرض", "number": "2588057477", "expiry": "2027-04-11", "status": "valid", "days": 287, "company_norm": "مصنع نبات الأرض"}, {"name": "MOHAMED SHABBIR   HUSSAIN", "company": "شركة المحلية الدولية التجارية", "number": "2140041415", "expiry": "2027-06-20", "status": "valid", "days": 357, "company_norm": "الشركة المحلية الدولية التجارية"}, {"name": "مجدي ميرغني حسن التوم", "company": "شركة المحلية الدولية التجارية", "number": "2101982441", "expiry": "2026-11-14", "status": "valid", "days": 139, "company_norm": "الشركة المحلية الدولية التجارية"}, {"name": "احمد زيدان زكي حسين", "company": "شركة المحلية الدولية التجارية", "number": "2092318928", "expiry": "2026-10-06", "status": "valid", "days": 100, "company_norm": "الشركة المحلية الدولية التجارية"}, {"name": "احمد كامل احمد السيد", "company": "شركة المحلية الدولية التجارية", "number": "2558230377", "expiry": "2027-03-13", "status": "valid", "days": 258, "company_norm": "الشركة المحلية الدولية التجارية"}, {"name": "MOHAMMAD MUNTAKA MUSALMAN MOHAMMAD", "company": "شركة المحلية الدولية التجارية", "number": "2325590459", "expiry": "2027-05-04", "status": "valid", "days": 310, "company_norm": "الشركة المحلية الدولية التجارية"}], "vehicles": [{"type": "نيسان ارمادا", "plate": "ب ب م 6580", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1446-04-22", "form_expiry": "2024-10-25", "form_status": "expired", "form_days": -611, "insp_hijri": "1445-05-11", "insp_expiry": "2023-11-25", "insp_status": "expired", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غمارتين", "plate": "ب ب ل 1620", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1450-08-14", "form_expiry": "2028-12-30", "form_status": "valid", "form_days": 916, "insp_hijri": "1448-08-26", "insp_expiry": "2027-02-03", "insp_status": "valid", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "هونداي هاتشباك", "plate": "ح ب د 2549", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1449-09-07", "form_expiry": "2028-02-03", "form_status": "valid", "form_days": 585, "insp_hijri": "1448-01-03", "insp_expiry": "2026-06-18", "insp_status": "expired", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غمارتين", "plate": "ب س ح 1013", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-01-18", "form_expiry": "2026-07-03", "form_status": "soon", "form_days": 5, "insp_hijri": "1448-06-28", "insp_expiry": "2026-12-08", "insp_status": "valid", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غماره", "plate": "أ ب ل 5799", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1447-01-07", "form_expiry": "2025-07-02", "form_status": "expired", "form_days": -361, "insp_hijri": "1445-12-16", "insp_expiry": "2024-06-22", "insp_status": "expired", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو شاحنه", "plate": "ب ع أ 2151", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-11-15", "form_expiry": "2027-04-22", "form_status": "valid", "form_days": 298, "insp_hijri": "1448-09-19", "insp_expiry": "2027-02-26", "insp_status": "valid", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غمارتين", "plate": "ب ب ل 1621", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1450-08-14", "form_expiry": "2028-12-30", "form_status": "valid", "form_days": 916, "insp_hijri": "1448-01-22", "insp_expiry": "2026-07-07", "insp_status": "soon", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "هيونداي حافلة", "plate": "ب ع ب 2633", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-12-04", "form_expiry": "2027-05-10", "form_status": "valid", "form_days": 316, "insp_hijri": "1448-09-22", "insp_expiry": "2027-03-01", "insp_status": "valid", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غمارتين", "plate": "ب ع أ 2264", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-11-15", "form_expiry": "2027-04-22", "form_status": "valid", "form_days": 298, "insp_hijri": "1448-09-17", "insp_expiry": "2027-02-24", "insp_status": "valid", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غمارتين", "plate": "ب ب ل 1619", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1447-08-14", "form_expiry": "2026-02-02", "form_status": "expired", "form_days": -146, "insp_hijri": "1448-02-03", "insp_expiry": "2026-07-17", "insp_status": "soon", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غماره", "plate": "ب ع أ 2152", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-11-15", "form_expiry": "2027-04-22", "form_status": "valid", "form_days": 298, "insp_hijri": "1448-09-22", "insp_expiry": "2027-03-01", "insp_status": "valid", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "هونداي سنتافيه", "plate": "ب ن ح 4509", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-06-22", "form_expiry": "2026-12-02", "form_status": "valid", "form_days": 157, "insp_hijri": "1448-01-14", "insp_expiry": "2026-06-29", "insp_status": "soon", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "هونداي توسان", "plate": "ب ن م 9987", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-08-20", "form_expiry": "2027-01-28", "form_status": "valid", "form_days": 214, "insp_hijri": "1448-05-02", "insp_expiry": "2026-10-13", "insp_status": "valid", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "متسوبيشي بكب غماره", "plate": "أ ح ب 2273", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1444-01-03", "form_expiry": "2022-08-01", "form_status": "expired", "form_days": -1427, "insp_hijri": "1442-01-17", "insp_expiry": "2020-09-05", "insp_status": "expired", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو شاحنه", "plate": "ب ع ح 4137", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-11-29", "form_expiry": "2027-05-06", "form_status": "valid", "form_days": 312, "insp_hijri": "1448-09-21", "insp_expiry": "2027-02-28", "insp_status": "valid", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو شاحنه", "plate": "ب ع ح 4138", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-11-29", "form_expiry": "2027-05-06", "form_status": "valid", "form_days": 312, "insp_hijri": "1448-09-19", "insp_expiry": "2027-02-26", "insp_status": "valid", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غمارتين", "plate": "أ ك د 4741", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1446-06-01", "form_expiry": "2024-12-02", "form_status": "expired", "form_days": -573, "insp_hijri": "1448-07-06", "insp_expiry": "2026-12-15", "insp_status": "valid", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غمارتين", "plate": "ب ب ك 3107", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1446-06-05", "form_expiry": "2024-12-06", "form_status": "expired", "form_days": -569, "insp_hijri": "1448-01-09", "insp_expiry": "2026-06-24", "insp_status": "expired", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "هونداي توسان", "plate": "ب ن م 9985", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-08-20", "form_expiry": "2027-01-28", "form_status": "valid", "form_days": 214, "insp_hijri": "1448-01-11", "insp_expiry": "2026-06-26", "insp_status": "expired", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو دينا", "plate": "أ د س 6005", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1444-06-17", "form_expiry": "2023-01-10", "form_status": "expired", "form_days": -1265, "insp_hijri": "1444-04-03", "insp_expiry": "2022-10-28", "insp_status": "expired", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غمارتين", "plate": "ب ب ل 1618", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1450-08-14", "form_expiry": "2028-12-30", "form_status": "valid", "form_days": 916, "insp_hijri": "1447-10-24", "insp_expiry": "2026-04-12", "insp_status": "expired", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غمارتين", "plate": "ب ع أ 2263", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-11-15", "form_expiry": "2027-04-22", "form_status": "valid", "form_days": 298, "insp_hijri": "لم يتم الفحص ونقل الملكية", "insp_expiry": null, "insp_status": "unknown", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}, {"type": "ايسوزو بكب غمارتين", "plate": "ب ع أ 2194", "company": "الشركة المحلية للتجارة والزراعة المحدودة", "form_hijri": "1448-11-18", "form_expiry": "2027-04-25", "form_status": "valid", "form_days": 301, "insp_hijri": "لم يتم الفحص ونقل الملكية", "insp_expiry": null, "insp_status": "unknown", "condition": "صالحة", "company_norm": "الشركة المحلية للتجارة والزراعة المحدودة"}], "platforms": ["وزارة الموارد البشرية", "منصة مقيم", "التأمينات الاجتماعية", "منصة الجمارك ( فسح )", "منصة سابر", "مصلحة الجمارك", "الدفاع المدني ( سلامة )", "الهيئة السعودية للمواصفات و المقاييس", "الهيئة العامة للنقل", "بلدي لجميع الشركات", "منصة صناعي (مصنع نبات الأرض)", "صندوق التنمية الصناعي", "هيئة المدن ( رخصة التشغيل )", "منصة اعتماد", "الهيئة العامة للأرصاد وحماية البيئة", "وزارة التجارة لجميع الشركات", "الزكاة و الدخل", "شركة الاتصالات STC", "الغرفة التجارية", "منصة قوى", "منصة مدد", "منصة مدد", "كاميرات مصنع نبات الأرض", "أميل اعلان الوظائف", "منصة حصاد", "العنوان الوطني المحلية الزراعية", "العنوان الوطني مصنع نبات الأرض", "الصادرات السعودية", "إيجار ( شبكة إيجار )", "طاقات", "موقع وظيفة كود", "الهيئة العامة للأحصاء", "منصة تم", "منصة فسح المصنع", "منصة هيئة المقاولين", "شركة الكهرباء مصنع نبات الارض", "شركة الكهرباء المحلية الزراعية", "جدارة للتوظيف", "الغرفة التجارية مصنع نبات الأرض", "الطابعة الجديد", "منصة أجير", "التأمين الطبي ( بوبا )", "انترنت المكتب 1", "انترنت المكتب 2", "انترنت افاق شامل رقم الفاكس 2132603", "شريحة بيانات انترنت خاص مكتب 17109", "شريحة بيانات انترنت مكتب فودة", "انترنت مكتب المحلية رقم 17103", "GPS"]};
+
+</script>
+<script>
+/* ===== المحلية | mahalliah — Dashboard Logic ===== */
+(function(){
+"use strict";
+const D = window.DASH_DATA;
+const TODAY = new Date(D.generated + "T00:00:00");
+
+/* ---- helpers ---- */
+const $  = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+const el = (t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+
+const ST = {
+  valid:    {ar:"ساري",        cls:"b-ok",      color:"var(--ok)"},
+  soon:     {ar:"قريب الانتهاء", cls:"b-warn",    color:"var(--warn)"},
+  expired:  {ar:"منتهي",        cls:"b-danger",  color:"var(--danger)"},
+  recurring:{ar:"متكرر شهرياً",  cls:"b-neutral", color:"var(--neutral)"},
+  unknown:  {ar:"غير محدد",     cls:"b-neutral", color:"var(--neutral)"}
+};
+const fmtDate = iso => iso ? iso.split("-").reverse().join("/") : "—";
+const daysTxt = d => d==null ? "—" : (d<0 ? `منذ ${Math.abs(d)} يوم` : `${d} يوم`);
+function badge(s){const m=ST[s]||ST.unknown;return `<span class="badge ${m.cls}">${m.ar}</span>`;}
+
+/* ---- filter state ---- */
+const state = {company:"", status:"", window:"", q:""};
+
+function companies(){
+  const set=new Set();
+  ["licenses","iqamas","vehicles"].forEach(g=>D[g].forEach(r=>{if(r.company_norm)set.add(r.company_norm);}));
+  return Array.from(set).sort();
+}
+
+/* a record passes the global filters */
+function passCompany(r){return !state.company || r.company_norm===state.company;}
+function passStatus(s){return !state.status || s===state.status;}
+function passWindow(days){
+  if(!state.window) return true;
+  if(days==null) return false;
+  const w=+state.window;
+  return days>=0 && days<=w;
+}
+function passQ(text){return !state.q || (text||"").toLowerCase().includes(state.q.toLowerCase());}
+
+/* ---- filtered datasets (status uses the relevant field) ---- */
+function fLicenses(){
+  return D.licenses.filter(r=>passCompany(r)&&passStatus(r.status)&&passWindow(r.days)
+    &&passQ(r.item+" "+r.platform+" "+r.company_norm));
+}
+function fIqamas(){
+  return D.iqamas.filter(r=>passCompany(r)&&passStatus(r.status)&&passWindow(r.days)
+    &&passQ(r.name+" "+r.number+" "+r.company_norm));
+}
+function fVehicles(){
+  // vehicle status keyed on form_status (الاستمارة)
+  return D.vehicles.filter(r=>passCompany(r)&&passStatus(r.form_status)&&passWindow(r.form_days)
+    &&passQ(r.type+" "+r.plate+" "+r.company_norm));
+}
+
+/* ===================== RENDER ===================== */
+function render(){
+  const L=fLicenses(), I=fIqamas(), V=fVehicles();
+  renderKPIs(L,I,V);
+  renderDonut(I);
+  renderCompanyBars(L,I,V);
+  renderVehicleStatus(V);
+  renderTimeline(I);
+  renderExpiringSoon(L,I,V);
+  renderTables(L,I,V);
+}
+
+/* ---- KPIs ---- */
+function renderKPIs(L,I,V){
+  const cont=$("#kpis");cont.innerHTML="";
+  const expSoon = L.filter(x=>x.status==="soon").length
+                + I.filter(x=>x.status==="soon").length
+                + V.filter(x=>x.form_status==="soon").length;
+  const expired = L.filter(x=>x.status==="expired").length
+                + I.filter(x=>x.status==="expired").length
+                + V.filter(x=>x.form_status==="expired").length;
+  const cards=[
+    {label:"التراخيص والسجلات", value:L.length, sub:"سجل قيد المتابعة", cls:"dark"},
+    {label:"إقامات الموظفين", value:I.length, sub:"موظف مسجّل", cls:""},
+    {label:"المركبات", value:V.length, sub:"مركبة في الأسطول", cls:""},
+    {label:"المنصات والأنظمة", value:D.platforms.length, sub:"جهة / نظام", cls:"dark"},
+    {label:"قريبة الانتهاء (≤90 يوم)", value:expSoon, sub:"تحتاج متابعة عاجلة", cls:"warn"},
+    {label:"منتهية", value:expired, sub:"تتطلب تجديد فوري", cls:"danger"},
+  ];
+  cards.forEach(c=>{
+    cont.appendChild(el("div","kpi "+c.cls,
+      `<div class="label">${c.label}</div><div class="value">${c.value}</div><div class="sub">${c.sub}</div>`));
+  });
+}
+
+/* ---- Donut: iqama status ---- */
+function renderDonut(I){
+  const counts={valid:0,soon:0,expired:0};
+  I.forEach(r=>{counts[r.status]=(counts[r.status]||0)+1;});
+  const total=I.length||1;
+  const segs=[["valid",counts.valid],["soon",counts.soon],["expired",counts.expired]].filter(s=>s[1]>0);
+  let acc=0, grad=[];
+  segs.forEach(([k,v])=>{const a=acc, b=acc+v/total*100;grad.push(`${ST[k].color} ${a}% ${b}%`);acc=b;});
+  if(!grad.length) grad.push("var(--neutral-bg) 0% 100%");
+  const donut=$("#donut");
+  donut.style.background=`conic-gradient(${grad.join(",")})`;
+  $("#donut-total").textContent=I.length;
+  const lg=$("#donut-legend");lg.innerHTML="";
+  [["valid","ساري"],["soon","قريب الانتهاء"],["expired","منتهي"]].forEach(([k,t])=>{
+    lg.appendChild(el("div","li",
+      `<span class="sw" style="background:${ST[k].color}"></span>${t} <b style="margin-right:auto;color:var(--brand-dark)">${counts[k]||0}</b>`));
+  });
+}
+
+/* ---- Horizontal bars: records per company ---- */
+function renderCompanyBars(L,I,V){
+  const map={};
+  const add=(c,n)=>{if(!c)return;map[c]=map[c]||{lic:0,iq:0,veh:0};map[c][n]++;};
+  L.forEach(r=>add(r.company_norm,"lic"));
+  I.forEach(r=>add(r.company_norm,"iq"));
+  V.forEach(r=>add(r.company_norm,"veh"));
+  const rows=Object.entries(map).map(([c,o])=>[c,o.lic+o.iq+o.veh,o]);
+  rows.sort((a,b)=>b[1]-a[1]);
+  const max=Math.max(1,...rows.map(r=>r[1]));
+  const box=$("#company-bars");box.innerHTML="";
+  if(!rows.length){box.innerHTML='<div class="empty">لا توجد بيانات مطابقة</div>';return;}
+  rows.forEach(([c,tot,o])=>{
+    const r=el("div","bar-row");
+    r.innerHTML=`<div class="name" title="${c}">${c}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${tot/max*100}%"></div></div>
+      <div class="num">${tot}</div>`;
+    r.title=`تراخيص: ${o.lic} • إقامات: ${o.iq} • مركبات: ${o.veh}`;
+    box.appendChild(r);
+  });
+}
+
+/* ---- Vehicle inspection vs form status ---- */
+function renderVehicleStatus(V){
+  const box=$("#vehicle-bars");box.innerHTML="";
+  const cats=[["الاستمارة","form_status"],["الفحص الدوري","insp_status"]];
+  const keys=["valid","soon","expired","unknown"];
+  cats.forEach(([label,fld])=>{
+    const c={};keys.forEach(k=>c[k]=0);
+    V.forEach(r=>{c[r[fld]]=(c[r[fld]]||0)+1;});
+    const total=V.length||1;
+    const r=el("div","bar-row");
+    let segHtml=`<div class="bar-track" style="display:flex">`;
+    keys.forEach(k=>{if(c[k]>0)segHtml+=`<div title="${ST[k].ar}: ${c[k]}" style="height:100%;width:${c[k]/total*100}%;background:${ST[k].color}"></div>`;});
+    segHtml+=`</div>`;
+    r.innerHTML=`<div class="name">${label}</div>${segHtml}<div class="num">${V.length}</div>`;
+    box.appendChild(r);
+  });
+}
+
+/* ---- Timeline: iqama expiries per month (next 12 months) ---- */
+function renderTimeline(I){
+  const box=$("#timeline");box.innerHTML="";
+  const months=[];
+  for(let i=0;i<12;i++){
+    const d=new Date(TODAY.getFullYear(),TODAY.getMonth()+i,1);
+    months.push({key:`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`,
+      lbl:d.toLocaleDateString("ar-EG",{month:"short"}),valid:0,soon:0,expired:0});
+  }
+  I.forEach(r=>{
+    if(!r.expiry)return;
+    const k=r.expiry.slice(0,7);
+    const m=months.find(x=>x.key===k);
+    if(m)m[r.status]=(m[r.status]||0)+1;
+  });
+  const max=Math.max(1,...months.map(m=>m.valid+m.soon+m.expired));
+  months.forEach(m=>{
+    const tot=m.valid+m.soon+m.expired;
+    const col=el("div","col");
+    let stack=`<div class="tot">${tot||""}</div><div class="stack" style="height:${tot/max*100}%">`;
+    ["expired","soon","valid"].forEach(k=>{
+      if(m[k]>0)stack+=`<div class="seg" title="${ST[k].ar}: ${m[k]}" style="flex:${m[k]};background:${ST[k].color}"></div>`;
+    });
+    stack+=`</div><div class="lbl">${m.lbl}</div>`;
+    col.innerHTML=stack;
+    box.appendChild(col);
+  });
+}
+
+/* ---- Expiring soon list (next 90 days, sorted) ---- */
+function renderExpiringSoon(L,I,V){
+  const items=[];
+  L.forEach(r=>{if(r.days!=null&&r.days>=0&&r.days<=90)items.push({t:"ترخيص",name:r.item,c:r.company_norm,days:r.days,date:r.expiry,s:r.status});});
+  I.forEach(r=>{if(r.days!=null&&r.days>=0&&r.days<=90)items.push({t:"إقامة",name:r.name,c:r.company_norm,days:r.days,date:r.expiry,s:r.status});});
+  V.forEach(r=>{if(r.form_days!=null&&r.form_days>=0&&r.form_days<=90)items.push({t:"استمارة",name:r.type+" — "+r.plate,c:r.company_norm,days:r.form_days,date:r.form_expiry,s:r.form_status});});
+  items.sort((a,b)=>a.days-b.days);
+  const box=$("#soon-list");box.innerHTML="";
+  $("#soon-count").textContent=items.length;
+  if(!items.length){box.innerHTML='<div class="empty">لا عناصر قريبة الانتهاء ضمن 90 يوماً 🎉</div>';return;}
+  const tbl=el("table");
+  tbl.innerHTML=`<thead><tr><th>النوع</th><th>البيان</th><th>الشركة</th><th>تاريخ الانتهاء</th><th>المتبقي</th></tr></thead>`;
+  const tb=el("tbody");
+  items.slice(0,40).forEach(it=>{
+    tb.appendChild(el("tr",null,
+      `<td><span class="badge b-neutral">${it.t}</span></td><td>${it.name}</td><td>${it.c}</td>
+       <td>${fmtDate(it.date)}</td><td><span class="badge ${ST[it.s].cls}">${daysTxt(it.days)}</span></td>`));
+  });
+  tbl.appendChild(tb);box.appendChild(tbl);
+}
+
+/* ===================== TABLES ===================== */
+let activeTab="licenses";
+const sortState={licenses:{k:null,dir:1},iqamas:{k:null,dir:1},vehicles:{k:null,dir:1},platforms:{k:null,dir:1}};
+
+const TCFG={
+  licenses:{
+    cols:[["item","البيان"],["company_norm","الشركة"],["platform","المنصة"],["hijri","انتهاء (هجري)"],["expiry","انتهاء (ميلادي)"],["days","المتبقي"],["status","الحالة"]],
+    data:fLicenses,
+    cell:(r,k)=>{
+      if(k==="expiry")return r.expiry?fmtDate(r.expiry):(r.expiry_text||"—");
+      if(k==="days")return r.status==="recurring"?'<span class="badge b-neutral">شهري</span>':daysBadge(r.days,r.status);
+      if(k==="status")return badge(r.status);
+      if(k==="hijri")return r.hijri||"—";
+      return r[k]||"—";
+    }
+  },
+  iqamas:{
+    cols:[["name","اسم الموظف"],["company_norm","الشركة"],["number","رقم الإقامة"],["expiry","تاريخ الانتهاء"],["days","المتبقي"],["status","الحالة"]],
+    data:fIqamas,
+    cell:(r,k)=>{
+      if(k==="expiry")return fmtDate(r.expiry);
+      if(k==="days")return daysBadge(r.days,r.status);
+      if(k==="status")return badge(r.status);
+      return r[k]||"—";
+    }
+  },
+  vehicles:{
+    cols:[["type","نوع المركبة"],["plate","رقم اللوحة"],["form_expiry","انتهاء الاستمارة"],["form_status","حالة الاستمارة"],["insp_expiry","انتهاء الفحص"],["insp_status","حالة الفحص"],["condition","الحالة"]],
+    data:fVehicles,
+    cell:(r,k)=>{
+      if(k==="form_expiry")return fmtDate(r.form_expiry);
+      if(k==="insp_expiry")return r.insp_expiry?fmtDate(r.insp_expiry):(r.insp_hijri||"—");
+      if(k==="form_status")return daysBadge(r.form_days,r.form_status);
+      if(k==="insp_status")return badge(r.insp_status);
+      return r[k]||"—";
+    }
+  },
+  platforms:{
+    cols:[["i","#"],["name","اسم الجهة / النظام"]],
+    data:()=>D.platforms.filter(p=>passQ(p)).map((name,i)=>({i:i+1,name})),
+    cell:(r,k)=>r[k]
+  }
+};
+function daysBadge(d,s){return d==null?"—":`<span class="badge ${ST[s].cls}">${daysTxt(d)}</span>`;}
+
+function renderTables(){
+  const cfg=TCFG[activeTab];
+  let rows=cfg.data();
+  const ss=sortState[activeTab];
+  if(ss.k){
+    rows=rows.slice().sort((a,b)=>{
+      let x=a[ss.k],y=b[ss.k];
+      if(x==null)x="";if(y==null)y="";
+      if(typeof x==="number"||typeof y==="number")return (Number(x)-Number(y))*ss.dir;
+      return String(x).localeCompare(String(y),"ar")*ss.dir;
+    });
+  }
+  $("#table-count").textContent=rows.length+" سجل";
+  const wrap=$("#table-wrap");wrap.innerHTML="";
+  if(!rows.length){wrap.innerHTML='<div class="empty">لا توجد سجلات مطابقة للفلاتر المختارة</div>';return;}
+  const tbl=el("table");
+  const thead=el("thead");const tr=el("tr");
+  cfg.cols.forEach(([k,t])=>{
+    const arr= ss.k===k ? (ss.dir===1?"▲":"▼") : "⇅";
+    const th=el("th",null,`${t} <span class="arr">${arr}</span>`);
+    th.onclick=()=>{if(ss.k===k)ss.dir*=-1;else{ss.k=k;ss.dir=1;}renderTables();};
+    tr.appendChild(th);
+  });
+  thead.appendChild(tr);tbl.appendChild(thead);
+  const tb=el("tbody");
+  rows.forEach(r=>{
+    const trr=el("tr");
+    cfg.cols.forEach(([k])=>trr.appendChild(el("td",null,cfg.cell(r,k))));
+    tb.appendChild(trr);
+  });
+  tbl.appendChild(tb);wrap.appendChild(tbl);
+}
+
+/* ===================== INIT ===================== */
+function init(){
+  // company filter options
+  const sel=$("#f-company");
+  companies().forEach(c=>{const o=el("option");o.value=c;o.textContent=c;sel.appendChild(o);});
+  // bind filters
+  sel.onchange=e=>{state.company=e.target.value;render();};
+  $("#f-status").onchange=e=>{state.status=e.target.value;render();};
+  $("#f-window").onchange=e=>{state.window=e.target.value;render();};
+  $("#f-search").oninput=e=>{state.q=e.target.value;render();};
+  $("#f-reset").onclick=()=>{
+    state.company="";state.status="";state.window="";state.q="";
+    sel.value="";$("#f-status").value="";$("#f-window").value="";$("#f-search").value="";
+    render();
+  };
+  // tabs
+  $$(".tab").forEach(t=>t.onclick=()=>{
+    $$(".tab").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");activeTab=t.dataset.tab;renderTables();
+  });
+  $("#gen-date").textContent=fmtDate(D.generated);
+  render();
+}
+document.addEventListener("DOMContentLoaded",init);
+})();
+
+</script>
+</body>
+</html>
