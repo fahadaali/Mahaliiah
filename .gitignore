@@ -1,5 +1,7 @@
 node_modules/
-package.json
-package-lock.json
-*.png
+.wrangler/
+.dev.vars
 dist_protected.html
+legacy/dist_protected.html
+*.png
+.DS_Store

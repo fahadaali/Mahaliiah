@@ -1,0 +1,27 @@
+{
+  "name": "mahalliah-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "منصة المحلية · mahalliah — متابعة التراخيص والإقامات والمركبات والأنظمة",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate:local": "wrangler d1 migrations apply mahalliah-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply mahalliah-db --remote",
+    "db:seed:local": "wrangler d1 execute mahalliah-db --local --file=./migrations/0002_seed.sql",
+    "db:seed:remote": "wrangler d1 execute mahalliah-db --remote --file=./migrations/0002_seed.sql",
+    "test": "vitest run",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "hono": "^4.6.14"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.5.40",
+    "@cloudflare/workers-types": "^4.20241218.0",
+    "typescript": "^5.7.2",
+    "vitest": "2.1.8",
+    "wrangler": "^3.99.0"
+  }
+}

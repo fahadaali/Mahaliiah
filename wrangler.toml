@@ -1,0 +1,43 @@
+name = "mahalliah-platform"
+main = "src/index.ts"
+compatibility_date = "2024-12-18"
+compatibility_flags = ["nodejs_compat"]
+
+# ===== الواجهة الثابتة (Static Assets) =====
+[assets]
+directory = "./public"
+binding = "ASSETS"
+# السلوك الافتراضي: تُخدَم الملفات الثابتة أولاً، وأي مسار غير مطابق (مثل /api/*) يعالجه الـWorker.
+
+# ===== قاعدة البيانات D1 =====
+# أنشئها بـ: wrangler d1 create mahalliah-db  ثم ضع database_id الناتج هنا
+[[d1_databases]]
+binding = "DB"
+database_name = "mahalliah-db"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+# ===== تخزين الوثائق R2 =====
+# أنشئه بـ: wrangler r2 bucket create mahalliah-docs
+[[r2_buckets]]
+binding = "DOCS"
+bucket_name = "mahalliah-docs"
+
+# ===== مهمة مجدولة يومية لفحص التنبيهات (09:00 UTC) =====
+[triggers]
+crons = ["0 9 * * *"]
+
+# ===== متغيّرات عامة (غير سرّية) =====
+[vars]
+# نطاق فريق Cloudflare Access، مثال: https://YOURTEAM.cloudflareaccess.com
+ACCESS_TEAM_DOMAIN = "https://REPLACE_TEAM.cloudflareaccess.com"
+# معرّف الجمهور (AUD) لتطبيق Access — من إعدادات التطبيق في Zero Trust
+ACCESS_AUD = "REPLACE_WITH_ACCESS_APPLICATION_AUD"
+# بريد أول مسؤول يُبذّر تلقائياً كـ admin عند أول دخول
+BOOTSTRAP_ADMIN_EMAIL = "fahad2ao@gmail.com"
+# وضع التطوير المحلي: يتخطّى تحقّق Access ويستخدم بريداً وهمياً (اضبطه false في الإنتاج)
+DEV_BYPASS_AUTH = "false"
+
+# ===== أسرار (تُضبط بـ wrangler secret put) =====
+# RESEND_API_KEY   → لإرسال بريد التنبيهات (اختياري)
+# ALERT_TO_EMAILS  → قائمة بريد المستلمين مفصولة بفواصل (اختياري)

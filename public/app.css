@@ -1,0 +1,103 @@
+/* ===== منصة المحلية · mahalliah — تنسيقات التطبيق (تمتد من base.css) ===== */
+
+/* شريط علوي للتطبيق */
+.topbar{
+  background:linear-gradient(135deg,var(--brand-dark),var(--brand-dark-2));
+  color:var(--brand-cream);display:flex;align-items:center;gap:14px;
+  padding:12px 20px;position:sticky;top:0;z-index:60;box-shadow:var(--shadow);
+}
+.topbar .logo{width:46px;height:46px;border-radius:12px;background:#fff;padding:3px;object-fit:cover;flex:0 0 auto}
+.topbar .brand{font-weight:800;font-size:17px;line-height:1.2}
+.topbar .brand small{display:block;font-size:11px;font-weight:400;opacity:.8}
+.topbar .spacer{flex:1}
+.topbar .userbox{font-size:12px;text-align:left;line-height:1.6}
+.topbar .userbox b{color:var(--brand-green-2)}
+.role-badge{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:700;background:var(--brand-green);color:#1b2408}
+
+/* شريط تنقّل */
+.nav{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:70px;z-index:55}
+.nav .inner{max-width:1320px;margin:0 auto;display:flex;gap:2px;flex-wrap:wrap;padding:0 12px}
+.nav button{
+  background:none;border:none;padding:13px 16px;font-family:inherit;font-size:14px;font-weight:600;
+  color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap;
+}
+.nav button:hover{color:var(--brand-dark)}
+.nav button.active{color:var(--brand-dark);border-bottom-color:var(--brand-green)}
+.nav .count{display:inline-block;min-width:20px;padding:0 6px;margin-inline-start:6px;border-radius:999px;
+  background:var(--neutral-bg);color:var(--muted);font-size:11px;font-weight:700}
+
+.view{display:none}
+.view.active{display:block}
+
+/* أزرار عامة */
+.btn{padding:9px 16px;border:none;border-radius:10px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:var(--brand-green);color:#1b2408}
+.btn-primary:hover{background:var(--brand-green-2)}
+.btn-dark{background:var(--brand-dark);color:var(--brand-cream)}
+.btn-dark:hover{background:var(--brand-dark-2)}
+.btn-ghost{background:var(--neutral-bg);color:var(--brand-dark)}
+.btn-ghost:hover{background:#e2e7d5}
+.btn-danger{background:var(--danger-bg);color:var(--danger)}
+.btn-danger:hover{background:#f6d5d0}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-sm{padding:5px 10px;font-size:12.5px;border-radius:8px}
+
+/* شريط أدوات الجدول */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+.toolbar .grow{flex:1;min-width:180px}
+.toolbar input[type=search]{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fbfcf8;font-family:inherit;font-size:14px}
+.toolbar select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fbfcf8;font-family:inherit;font-size:14px}
+
+/* أزرار داخل الجدول */
+.row-actions{display:flex;gap:6px;justify-content:flex-start}
+.icon-btn{width:30px;height:30px;border:none;border-radius:8px;cursor:pointer;font-size:14px;display:inline-flex;align-items:center;justify-content:center;transition:.15s}
+.icon-edit{background:var(--warn-bg);color:var(--warn)}
+.icon-del{background:var(--danger-bg);color:var(--danger)}
+.icon-file{background:var(--neutral-bg);color:var(--brand-dark)}
+.icon-btn:hover{filter:brightness(.95)}
+
+/* نافذة منبثقة */
+.modal-back{position:fixed;inset:0;background:rgba(38,49,12,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal-back.show{display:flex}
+.modal{background:var(--card);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.3);width:min(560px,96vw);max-height:90vh;overflow:auto}
+.modal h3{margin:0;padding:18px 22px;border-bottom:1px solid var(--line);color:var(--brand-dark);font-size:17px;position:sticky;top:0;background:var(--card)}
+.modal .body{padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.modal .foot{padding:16px 22px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-start;position:sticky;bottom:0;background:var(--card)}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field label{font-size:13px;font-weight:600;color:var(--muted)}
+.form-field label .req{color:var(--danger)}
+.form-field input,.form-field select,.form-field textarea{
+  padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fbfcf8;font-family:inherit;font-size:14px;color:var(--ink);outline:none;transition:.15s;width:100%;
+}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--brand-green);box-shadow:0 0 0 3px rgba(118,184,42,.18)}
+.form-field .hint{font-size:11px;color:var(--muted)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* تنبيه/رسالة */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:200;padding:12px 22px;border-radius:12px;color:#fff;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;transition:.3s;pointer-events:none}
+.toast.show{opacity:1}
+.toast.ok{background:var(--ok)}
+.toast.err{background:var(--danger)}
+.toast.info{background:var(--brand-dark)}
+
+/* نتائج الاستيراد */
+.import-summary{background:var(--neutral-bg);border-radius:12px;padding:14px;margin-top:8px}
+.import-summary .nums{display:flex;gap:18px;font-weight:700;margin-bottom:10px}
+.import-summary .nums .a{color:var(--ok)}
+.import-summary .nums .r{color:var(--danger)}
+.reject-list{max-height:240px;overflow:auto;font-size:13px}
+.reject-list .item{padding:7px 10px;border-bottom:1px solid var(--line);display:flex;gap:10px}
+.reject-list .item .rn{color:var(--muted);flex:0 0 auto}
+.reject-list .item .rr{color:var(--danger)}
+
+/* بطاقة فارغة */
+.loading{padding:50px;text-align:center;color:var(--muted)}
+
+/* شارة العدّاد الحي */
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--brand-green);margin-inline-start:6px;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+@media(max-width:720px){
+  .form-row{grid-template-columns:1fr}
+  .topbar .userbox{display:none}
+}
