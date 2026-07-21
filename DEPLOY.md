@@ -25,16 +25,16 @@ npm run db:migrate:remote     # ينشئ الجداول + يبذر البيان�
 > لإعادة توليد بذرة البيانات من ملف Excel محدّث: `python3 scripts/build_seed.py` ثم أعد الأمر أعلاه.
 > إن أردت البدء بقاعدة فارغة، احذف `migrations/0002_seed.sql` قبل التطبيق.
 
-## 4) إعداد Cloudflare Access (المصادقة)
-من لوحة **Zero Trust → Access → Applications → Add an application → Self-hosted**:
-1. **Application domain**: نطاق المنصة (مثال: `mahalliah.example.com` أو نطاق `*.workers.dev`).
-2. **Identity providers**: فعّل One-time PIN (بريد) أو Google … إلخ.
-3. **Policies**: أضف سياسة *Allow* تحصر الدخول ببُرد فريقك (Emails / Email domain).
-4. بعد الإنشاء، من **Overview** انسخ:
-   - **Application Audience (AUD) Tag** → ضعه في `ACCESS_AUD` بـ `wrangler.toml`.
-   - نطاق فريقك `https://<team>.cloudflareaccess.com` → ضعه في `ACCESS_TEAM_DOMAIN`.
-5. اضبط `BOOTSTRAP_ADMIN_EMAIL` على بريدك (يُمنح دور **مسؤول** تلقائياً عند أول دخول).
-6. تأكّد أن `DEV_BYPASS_AUTH = "false"` في الإنتاج.
+## 4) المصادقة (بريد + كلمة مرور داخل المنصة)
+المصادقة الآن مدمجة في المنصة نفسها — **لا حاجة لـ Cloudflare Access**.
+> إن كنت قد أنشأت تطبيق Access سابقاً لهذا النطاق، **احذفه/عطّله** من Zero Trust → Access → Applications
+> وإلا سيعترض الطلبات قبل وصولها للمنصة.
+
+- اضبط `BOOTSTRAP_ADMIN_EMAIL` في `wrangler.toml` على بريد المالك — يُنشأ حساب **مسؤول** له تلقائياً
+  عند أول دخول بكلمة المرور الافتراضية `1234`، ويُطلب منه تعيين كلمة مرور جديدة.
+- كل حساب جديد يضيفه المسؤول من شاشة «المستخدمون» تكون كلمة مروره الافتراضية `1234`،
+  ويُجبر على تغييرها عند أول دخول، وتُحفظ مجزّأة (PBKDF2) في جدول `users`.
+- الجلسات تُدار عبر كوكي آمن (HttpOnly) وجدول `sessions`.
 
 ## 5) (اختياري) تنبيهات البريد
 مهمة Cron اليومية ترسل بريداً للوثائق التي تنتهي خلال 30 يوماً عبر Resend:

@@ -18,6 +18,7 @@ export interface CurrentUser {
   email: string;
   name: string;
   role: Role;
+  must_change?: boolean;
 }
 
 // متغيّرات سياق Hono

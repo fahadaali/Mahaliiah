@@ -11,11 +11,17 @@ import {
   uploadAttachment, listAttachments, downloadAttachment, deleteAttachment,
 } from "./attachments";
 import { computeAlerts, runDailyAlerts } from "./alerts";
+import { login, logout, changePassword } from "./authroutes";
 
 const app = new Hono<{ Bindings: Env; Variables: Vars }>();
 
-// كل مسارات API تتطلّب مصادقة
+// كل مسارات API تمرّ بوسيط المصادقة (يستثني /api/login داخلياً)
 app.use("/api/*", authMiddleware);
+
+// ---------- تسجيل الدخول/الخروج وكلمة المرور ----------
+app.post("/api/login", login);
+app.post("/api/logout", logout);
+app.post("/api/change-password", changePassword);
 
 // ---------- الهوية والتعريف ----------
 app.get("/api/me", (c) => c.json(c.get("user")));

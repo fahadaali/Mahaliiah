@@ -32,6 +32,7 @@
   --glass:rgba(255,255,255,.72);
   --glass-2:rgba(255,255,255,.55);
   --glass-brd:rgba(255,255,255,.7);
+  --card-solid:rgba(255,255,255,.94);
   --panel-shadow:0 10px 34px rgba(44,58,13,.10);
   --dot:rgba(58,77,18,.14);
   --grid-op:.5;
@@ -53,6 +54,7 @@
   --glass:rgba(255,255,255,.045);
   --glass-2:rgba(255,255,255,.03);
   --glass-brd:rgba(255,255,255,.10);
+  --card-solid:rgba(16,23,9,.92);
   --panel-shadow:0 14px 40px rgba(0,0,0,.45);
   --dot:rgba(142,209,31,.16);
   --grid-op:.35;

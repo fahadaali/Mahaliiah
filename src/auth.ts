@@ -1,68 +1,54 @@
-// وسيط المصادقة والأدوار (RBAC) لمنصة المحلية
+// المصادقة والجلسات والأدوار (RBAC) — نظام بريد + كلمة مرور داخل المنصة
 
 import type { Context, Next } from "hono";
+import { getCookie } from "hono/cookie";
 import type { Env, Role, CurrentUser, Vars } from "./types";
-import { verifyAccessJwt } from "./access";
 
 const ROLE_RANK: Record<Role, number> = { viewer: 1, editor: 2, admin: 3 };
+export const SESSION_COOKIE = "mah_session";
+export const SESSION_DAYS = 30;
 
-/** يحدّد المستخدم الحالي من رمز Access ويربط دوره من قاعدة البيانات. */
+// المسارات المسموحة قبل تسجيل الدخول
+const PUBLIC_PATHS = new Set(["/api/login"]);
+// المسارات المسموحة عندما يجب تغيير كلمة المرور
+const PW_CHANGE_ALLOWED = new Set(["/api/me", "/api/change-password", "/api/logout"]);
+
+interface UserRow {
+  email: string; name: string; role: Role;
+  password_hash: string | null; must_change: number;
+}
+
+/** يجلب الجلسة الصالحة ويربطها بالمستخدم، أو يعيد 401. */
 export async function authMiddleware(
   c: Context<{ Bindings: Env; Variables: Vars }>,
   next: Next
 ) {
-  const env = c.env;
+  const path = new URL(c.req.url).pathname;
+  if (PUBLIC_PATHS.has(path)) return next();
 
-  let email = "";
-  let name = "";
+  const token = getCookie(c, SESSION_COOKIE);
+  if (!token) return c.json({ error: "يلزم تسجيل الدخول" }, 401);
 
-  if (env.DEV_BYPASS_AUTH === "true") {
-    // وضع تطوير محلي فقط: هوية وهمية للاختبار دون Access
-    email = (c.req.header("X-Dev-Email") || env.BOOTSTRAP_ADMIN_EMAIL || "dev@local").toLowerCase();
-    name = "مستخدم التطوير";
-  } else {
-    const token =
-      c.req.header("Cf-Access-Jwt-Assertion") ||
-      c.req.header("cf-access-jwt-assertion") ||
-      "";
-    if (!token) {
-      return c.json({ error: "غير مصرّح — يلزم تسجيل الدخول عبر Cloudflare Access" }, 401);
-    }
-    try {
-      const id = await verifyAccessJwt(token, env.ACCESS_TEAM_DOMAIN, env.ACCESS_AUD);
-      email = id.email;
-      name = id.name;
-    } catch (e) {
-      return c.json({ error: "فشل التحقّق من الهوية: " + (e as Error).message }, 401);
-    }
-  }
+  const sess = await c.env.DB.prepare(
+    `SELECT email FROM sessions WHERE token = ? AND expires_at > datetime('now')`
+  ).bind(token).first<{ email: string }>();
+  if (!sess) return c.json({ error: "انتهت الجلسة — سجّل الدخول من جديد" }, 401);
 
-  // اجلب الدور، أو أنشئ المستخدم. أول مستخدم أو البريد المُبذّر → admin.
-  let row = await env.DB.prepare(`SELECT email, name, role FROM users WHERE email = ?`)
-    .bind(email)
-    .first<{ email: string; name: string; role: Role }>();
+  const row = await c.env.DB.prepare(
+    `SELECT email, name, role, password_hash, must_change FROM users WHERE email = ?`
+  ).bind(sess.email).first<UserRow>();
+  if (!row) return c.json({ error: "الحساب غير موجود" }, 401);
 
-  if (!row) {
-    const countRow = await env.DB.prepare(`SELECT COUNT(*) AS n FROM users`).first<{ n: number }>();
-    const isFirst = (countRow?.n ?? 0) === 0;
-    const bootstrap = email === (env.BOOTSTRAP_ADMIN_EMAIL || "").toLowerCase();
-    if (isFirst || bootstrap) {
-      // أول مستخدم أو المسؤول المُبذّر → admin
-      await env.DB.prepare(`INSERT INTO users (email, name, role) VALUES (?, ?, 'admin')`)
-        .bind(email, name)
-        .run();
-      row = { email, name, role: "admin" };
-    } else {
-      // بريد غير مسجّل: تُدار الحسابات من شاشة «المستخدمون» فقط — يُرفض الدخول بوضوح
-      return c.json(
-        { error: "بريدك غير مسجّل في المنصة. يرجى مراجعة مسؤول النظام لإضافة بريدك." },
-        403
-      );
-    }
-  }
-
-  const user: CurrentUser = { email: row.email, name: row.name || name, role: row.role };
+  const user: CurrentUser = {
+    email: row.email, name: row.name || row.email, role: row.role,
+    must_change: !!row.must_change || !row.password_hash,
+  };
   c.set("user", user);
+
+  // إجبار تغيير كلمة المرور قبل استخدام باقي المنصة
+  if (user.must_change && !PW_CHANGE_ALLOWED.has(path)) {
+    return c.json({ error: "يجب تعيين كلمة مرور جديدة أولاً" }, 403);
+  }
   await next();
 }
 

@@ -7,6 +7,7 @@ import { DashboardView } from "./dashboard.js";
 import { EntityView } from "./entity.js";
 import { AuditView, UsersView } from "./admin.js";
 import { initTheme } from "./theme.js";
+import { renderLogin, renderChangePassword } from "./auth-ui.js";
 
 const ROLE_AR = { admin: "مسؤول", editor: "محرّر", viewer: "مطّلع" };
 let current = null;      // العرض الحالي (يملك tickLive)
@@ -24,19 +25,29 @@ const NAV = [
 ];
 
 async function boot() {
+  if (liveTimer) { clearInterval(liveTimer); liveTimer = null; }
   try {
     store.user = await api.me();
-    store.meta = (await api.meta()).entities;
   } catch (e) {
-    $("#main").innerHTML = `<div class="loading" style="color:var(--danger)">
-      تعذّر تسجيل الدخول: ${e.message}<br><br>
-      تأكّد من الدخول عبر Cloudflare Access.</div>`;
+    if (e.status === 401) { renderLogin(boot); return; }        // غير مسجّل → شاشة الدخول
+    $("#main").innerHTML = `<div class="loading" style="color:var(--danger)">تعذّر التحميل: ${e.message}</div>`;
     return;
   }
+  // أول دخول → إجبار تعيين كلمة مرور جديدة
+  if (store.user.must_change) { renderChangePassword(boot); return; }
 
-  // شريط المستخدم
+  store.meta = (await api.meta()).entities;
+
+  // شريط المستخدم + زر الخروج (في الشريط العلوي، ظاهر دائماً)
   $("#userbox").innerHTML = `<b>${store.user.name || store.user.email}</b><br>
     <span class="role-badge">${ROLE_AR[store.user.role] || store.user.role}</span>`;
+  const lo = $("#logout-btn");
+  lo.style.display = "";
+  lo.onclick = async () => {
+    try { await api.logout(); } catch (e) {}
+    store.user = null; store.meta = null; store.companies = [];
+    boot();
+  };
 
   // التنقّل
   const nav = $("#nav");

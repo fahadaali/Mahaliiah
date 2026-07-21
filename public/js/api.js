@@ -22,6 +22,9 @@ async function req(method, path, body, isForm = false) {
 export const api = {
   me:      () => req("GET", "/api/me"),
   meta:    () => req("GET", "/api/meta"),
+  login:   (email, password) => req("POST", "/api/login", { email, password }),
+  logout:  () => req("POST", "/api/logout"),
+  changePassword: (new_password) => req("POST", "/api/change-password", { new_password }),
   alerts:  (win = 90) => req("GET", `/api/alerts?window=${win}`),
   list:    (entity) => req("GET", `/api/e/${entity}`),
   create:  (entity, body) => req("POST", `/api/e/${entity}`, body),
