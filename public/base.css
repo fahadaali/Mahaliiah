@@ -45,7 +45,8 @@ a{color:inherit}
 .appbar .meta b{color:var(--brand-green-2)}
 
 /* ===== Layout ===== */
-.wrap{max-width:1320px;margin:0 auto;padding:22px}
+/* عرض كامل يملأ الواجهة مع هوامش جانبية متجاوبة حسب حجم الشاشة */
+.wrap{width:100%;max-width:100%;margin:0;padding:20px clamp(14px,2.5vw,48px)}
 .section-title{display:flex;align-items:center;gap:10px;margin:30px 4px 14px;font-size:18px;font-weight:700;color:var(--brand-dark)}
 .section-title .dot{width:10px;height:18px;border-radius:4px;background:var(--brand-green)}
 
@@ -82,8 +83,9 @@ a{color:inherit}
 .kpi .sub{font-size:12px;color:var(--muted);margin-top:6px}
 
 /* ===== Chart grid ===== */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+/* شبكات تتكيّف تلقائياً مع عرض الشاشة (auto-fit) وتمنع الفيضان على الشاشات الصغيرة */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:16px;margin-top:16px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin-top:16px}
 .panel{
   background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
   padding:18px;box-shadow:var(--shadow);
@@ -154,6 +156,5 @@ tbody tr:hover{background:var(--neutral-bg)}
 .footer b{color:var(--brand-dark)}
 
 @media(max-width:900px){
-  .grid-2,.grid-3{grid-template-columns:1fr}
   .appbar .meta{display:none}
 }
