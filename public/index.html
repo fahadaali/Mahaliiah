@@ -3,18 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1206">
 <title>منصة المحلية · mahalliah</title>
 <link rel="icon" href="logo.jpg">
+<script>
+  // ضبط الثيم مبكراً لتفادي وميض الشاشة
+  (function(){
+    try{
+      var t = localStorage.getItem("mah-theme");
+      if(!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+    }catch(e){ document.documentElement.setAttribute("data-theme","light"); }
+  })();
+</script>
 <link rel="stylesheet" href="base.css">
 <link rel="stylesheet" href="app.css">
 </head>
 <body>
+
+<!-- خلفية Aurora متحركة + شبكة نقطية -->
+<div class="bg-aurora" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+<div class="bg-grid" aria-hidden="true"></div>
 
 <!-- شريط علوي -->
 <header class="topbar">
   <img class="logo" src="logo.jpg" alt="شعار المحلية">
   <div class="brand">منصة المحلية<small>mahalliah — إدارة التراخيص والإقامات والمركبات والأنظمة</small></div>
   <div class="spacer"></div>
+  <button id="theme-toggle" class="theme-toggle" title="تبديل الوضع الداكن/الفاتح" aria-label="تبديل الثيم">🌙</button>
   <div class="userbox" id="userbox">…</div>
 </header>
 
@@ -22,7 +38,7 @@
 <nav class="nav"><div class="inner" id="nav"></div></nav>
 
 <main class="wrap" id="main">
-  <div class="loading" id="boot">جارٍ التحميل…</div>
+  <div class="loading" id="boot">جارٍ التحميل</div>
 </main>
 
 <!-- طبقة النوافذ المنبثقة -->

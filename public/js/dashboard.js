@@ -1,7 +1,7 @@
 // لوحة القيادة الحية — تُحسب المدد لحظياً من التاريخ الفعلي
 
 import { api } from "./api.js";
-import { $, el, escapeHtml, fmtDate, daysUntil, daysText, statusOf, STATUS, badge } from "./util.js";
+import { $, $$, el, escapeHtml, fmtDate, daysUntil, daysText, statusOf, STATUS, badge, countUp } from "./util.js";
 
 export class DashboardView {
   constructor() { this.data = null; }
@@ -24,7 +24,7 @@ export class DashboardView {
     const d = this.data;
     const c = this.container;
     c.innerHTML = `
-      <div class="section-title" style="margin-top:18px"><span class="dot"></span> لوحة القيادة
+      <div class="section-title" style="margin-top:18px"><span class="dot"></span> <span class="shiny">لوحة القيادة</span>
         <span class="hint" style="font-weight:400;color:var(--muted)">تحديث حي<span class="live-dot"></span></span></div>
       <div class="kpis" id="kpis"></div>
       <div class="grid-3">
@@ -61,8 +61,9 @@ export class DashboardView {
       { label: "منتهية", value: expired, sub: "تجديد فوري", cls: "danger" },
     ];
     $("#kpis").innerHTML = cards.map((c) =>
-      `<div class="kpi ${c.cls}"><div class="label">${c.label}</div><div class="value">${c.value}</div><div class="sub">${c.sub}</div></div>`
+      `<div class="kpi ${c.cls}"><div class="label">${c.label}</div><div class="value" data-to="${c.value}">0</div><div class="sub">${c.sub}</div></div>`
     ).join("");
+    $$("#kpis .value").forEach((v) => countUp(v, v.dataset.to));
   }
 
   renderDonut() {
@@ -74,7 +75,7 @@ export class DashboardView {
     order.forEach((k) => { if (counts[k] > 0) { const a = acc, b = acc + counts[k] / total * 100; grad.push(`${STATUS[k].color} ${a}% ${b}%`); acc = b; } });
     if (!grad.length) grad.push("var(--neutral-bg) 0% 100%");
     $("#donut").style.background = `conic-gradient(${grad.join(",")})`;
-    $("#donut-total").textContent = this.data.employees.length;
+    countUp($("#donut-total"), this.data.employees.length);
     $("#donut-legend").innerHTML = [["valid", "ساري"], ["soon", "قريب الانتهاء"], ["expired", "منتهي"]]
       .map(([k, t]) => `<div class="li"><span class="sw" style="background:${STATUS[k].color}"></span>${t}
         <b style="margin-right:auto;color:var(--brand-dark)">${counts[k]}</b></div>`).join("");

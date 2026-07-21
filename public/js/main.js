@@ -6,6 +6,7 @@ import { $, el, toast } from "./util.js";
 import { DashboardView } from "./dashboard.js";
 import { EntityView } from "./entity.js";
 import { AuditView, UsersView } from "./admin.js";
+import { initTheme } from "./theme.js";
 
 const ROLE_AR = { admin: "مسؤول", editor: "محرّر", viewer: "مطّلع" };
 let current = null;      // العرض الحالي (يملك tickLive)
@@ -76,4 +77,5 @@ async function route(id) {
   }
 }
 
+initTheme();
 boot();

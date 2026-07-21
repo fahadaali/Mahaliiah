@@ -10,6 +10,22 @@ export function el(tag, cls, html) {
   return e;
 }
 
+// عدّاد تصاعدي متحرّك للأرقام (يحترم تقليل الحركة)
+export function countUp(el, to, dur = 900) {
+  to = Number(to) || 0;
+  if (!el) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = to; return; }
+  const start = performance.now();
+  function tick(now) {
+    const p = Math.min(1, (now - start) / dur);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(to * eased);
+    if (p < 1) requestAnimationFrame(tick);
+    else el.textContent = to;
+  }
+  requestAnimationFrame(tick);
+}
+
 export function escapeHtml(s) {
   return String(s ?? "").replace(/[&<>"']/g, (m) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m])
