@@ -1,9 +1,10 @@
 name: Deploy to Cloudflare
 
-# تشغيل يدوي حالياً. سيُضاف تشغيل تلقائي عند push إلى main
-# بعد التأكّد من نجاح أول عملية نشر يدوية.
+# نشر تلقائي عند push إلى main (بعد نجاح أول عملية نشر يدوية)، ويمكن تشغيله يدوياً أيضاً.
 on:
   workflow_dispatch: {}
+  push:
+    branches: [main]
 
 jobs:
   deploy:

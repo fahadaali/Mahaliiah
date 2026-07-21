@@ -30,9 +30,9 @@ crons = ["0 9 * * *"]
 # ===== متغيّرات عامة (غير سرّية) =====
 [vars]
 # نطاق فريق Cloudflare Access، مثال: https://YOURTEAM.cloudflareaccess.com
-ACCESS_TEAM_DOMAIN = "https://REPLACE_TEAM.cloudflareaccess.com"
+ACCESS_TEAM_DOMAIN = "https://raspy-poetry-b86b.cloudflareaccess.com"
 # معرّف الجمهور (AUD) لتطبيق Access — من إعدادات التطبيق في Zero Trust
-ACCESS_AUD = "REPLACE_WITH_ACCESS_APPLICATION_AUD"
+ACCESS_AUD = "83639204e9640e3fb65414abe9c9ce3abdd3b4c677919851d2aac9b6745b0531"
 # بريد أول مسؤول يُبذّر تلقائياً كـ admin عند أول دخول
 BOOTSTRAP_ADMIN_EMAIL = "fahad2ao@gmail.com"
 # وضع التطوير المحلي: يتخطّى تحقّق Access ويستخدم بريداً وهمياً (اضبطه false في الإنتاج)
