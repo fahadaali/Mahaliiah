@@ -46,11 +46,19 @@ export async function authMiddleware(
     const countRow = await env.DB.prepare(`SELECT COUNT(*) AS n FROM users`).first<{ n: number }>();
     const isFirst = (countRow?.n ?? 0) === 0;
     const bootstrap = email === (env.BOOTSTRAP_ADMIN_EMAIL || "").toLowerCase();
-    const role: Role = isFirst || bootstrap ? "admin" : "viewer";
-    await env.DB.prepare(`INSERT INTO users (email, name, role) VALUES (?, ?, ?)`)
-      .bind(email, name, role)
-      .run();
-    row = { email, name, role };
+    if (isFirst || bootstrap) {
+      // أول مستخدم أو المسؤول المُبذّر → admin
+      await env.DB.prepare(`INSERT INTO users (email, name, role) VALUES (?, ?, 'admin')`)
+        .bind(email, name)
+        .run();
+      row = { email, name, role: "admin" };
+    } else {
+      // بريد غير مسجّل: تُدار الحسابات من شاشة «المستخدمون» فقط — يُرفض الدخول بوضوح
+      return c.json(
+        { error: "بريدك غير مسجّل في المنصة. يرجى مراجعة مسؤول النظام لإضافة بريدك." },
+        403
+      );
+    }
   }
 
   const user: CurrentUser = { email: row.email, name: row.name || name, role: row.role };
