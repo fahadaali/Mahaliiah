@@ -27,5 +27,5 @@ jobs:
       - name: عرض قواعد D1 (لالتقاط database_id)
         run: npx wrangler d1 list
 
-      - name: عرض حاويات R2 (للتأكيد)
-        run: npx wrangler r2 bucket list
+      - name: عرض حاويات R2 (للتأكيد؛ يتخطّى إن كان R2 غير مفعّل بعد)
+        run: npx wrangler r2 bucket list || echo "تعذّر عرض حاويات R2 — تأكّد من تفعيل R2 من لوحة Cloudflare"

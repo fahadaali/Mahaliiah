@@ -14,7 +14,7 @@ binding = "ASSETS"
 [[d1_databases]]
 binding = "DB"
 database_name = "mahalliah-db"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "26546d05-37e8-466c-b6a9-36a410ed9c1c"
 migrations_dir = "migrations"
 
 # ===== تخزين الوثائق R2 =====
